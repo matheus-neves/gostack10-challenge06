@@ -22,8 +22,7 @@ export default function Routes() {
           headerTitleStyle: {
             fontWeight: 'bold',
           },
-        }}
-      >
+        }}>
         <Stack.Screen
           name="Main"
           component={Main}
