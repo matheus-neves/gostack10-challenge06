@@ -34,6 +34,8 @@ module.exports = {
       }
     ],
     'import/prefet-default-export': 'off',
-    'react/state-in-constructor': 'off'
+    'react/state-in-constructor': 'off',
+    'react/sort-comp': 'off',
+    'react/static-property-placement': 'off'
   },
 };
