@@ -1,13 +1,40 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
+
+import api from '../../services/api';
 
 // import { Container } from './styles';
 
-export default function User({ route }) {
-  console.tron.log(route.params.user);
-  return (
-    <View>
-      <Text>User</Text>
-    </View>
-  );
+export default class User extends Component {
+  static navigationOptions = ({ route }) => ({
+    headerTitle: route.params.user.name,
+  });
+
+  static propTypes = {
+    route: PropTypes.shape().isRequired,
+  };
+
+  state = {
+    stars: [],
+  };
+
+  async componentDidMount() {
+    const { route } = this.props;
+
+    const user = route.params;
+
+    const response = await api.get(`/users/${user.login}/starred`);
+
+    this.setState({ stars: response.data });
+  }
+
+  render() {
+    const { stars } = this.state;
+    return (
+      <View>
+        <Text>User</Text>
+      </View>
+    );
+  }
 }
