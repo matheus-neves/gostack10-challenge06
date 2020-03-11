@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import * as React from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -23,15 +23,11 @@ export default function Routes() {
             fontWeight: 'bold',
           },
         }}>
-        <Stack.Screen
-          name="Main"
-          component={Main}
-          options={Main.navigationOptions}
-        />
+        <Stack.Screen name="Usuários" component={Main} />
         <Stack.Screen
           name="User"
           component={User}
-          options={User.navigationOptions}
+          options={({ route }) => ({ title: route.params.user.name })}
         />
       </Stack.Navigator>
     </NavigationContainer>
