@@ -74,10 +74,13 @@ export default class User extends Component {
     this.setState({ stars: response.data, page: 1, loading: false });
   };
 
-  handleNavigate = user => {
+  handleNavigate = repo => {
     const { navigation } = this.props;
 
-    navigation.navigate('Repository', { user });
+    navigation.navigate('Repo', {
+      uri: repo.html_url,
+      name: repo.name,
+    });
   };
 
   render() {

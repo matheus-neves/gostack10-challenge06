@@ -1,11 +1,12 @@
 import 'react-native-gesture-handler';
 import React from 'react';
+import { Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import Main from './pages/Main';
 import User from './pages/User';
-import Repository from './pages/Repository';
+import Repo from './pages/Repo';
 
 const Stack = createStackNavigator();
 
@@ -25,11 +26,24 @@ export default function Routes() {
           },
         }}>
         <Stack.Screen name="Usuários" component={Main} />
-        <Stack.Screen name="Repositórios" component={Repository} />
         <Stack.Screen
           name="User"
           component={User}
-          options={({ route }) => ({ title: route.params.user.name })}
+          options={({ route }) => ({ headerTitle: route.params.user.name })}
+        />
+        <Stack.Screen
+          name="Repo"
+          component={Repo}
+          headerTitle={({ style, children: title }) => {
+            return (
+              <Text
+                style={{ color: '#fff', fontWeight: 'bold', fontSize: 20 }}
+                numberOfLines={1}>
+                {title}
+              </Text>
+            );
+          }}
+          options={({ route }) => ({ headerTitle: route.params.name })}
         />
       </Stack.Navigator>
     </NavigationContainer>
