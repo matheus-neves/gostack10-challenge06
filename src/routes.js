@@ -15,6 +15,15 @@ export default function Routes() {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
+          // headerTitle: ({ style, children: title }) => {
+          //   return (
+          //     <Text
+          //       style={{ color: '#fff', fontWeight: 'bold', fontSize: 20 }}
+          //       numberOfLines={1}>
+          //       {title}
+          //     </Text>
+          //   );
+          // },
           headerStyle: {
             backgroundColor: '#7159c1',
           },
@@ -34,15 +43,6 @@ export default function Routes() {
         <Stack.Screen
           name="Repo"
           component={Repo}
-          headerTitle={({ style, children: title }) => {
-            return (
-              <Text
-                style={{ color: '#fff', fontWeight: 'bold', fontSize: 20 }}
-                numberOfLines={1}>
-                {title}
-              </Text>
-            );
-          }}
           options={({ route }) => ({ headerTitle: route.params.name })}
         />
       </Stack.Navigator>
