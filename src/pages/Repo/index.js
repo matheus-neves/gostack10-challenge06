@@ -1,25 +1,29 @@
 import React, { Component } from 'react';
+import { Animated } from 'react-native';
 import { WebView } from 'react-native-webview';
 
-// import { Container } from './styles';
+import ProgressBar from './styles';
+
+const AnimatedProgressBar = Animated.createAnimatedComponent(ProgressBar);
 
 export default class Repo extends Component {
   state = {
-    loading: false,
+    width: 0,
   };
 
   render() {
-    const { loading } = this.state;
+    const { width } = this.state;
     const { route } = this.props;
     const { uri } = route.params;
 
     return (
       <>
+        <AnimatedProgressBar width={width} />
         <WebView
           source={{ uri }}
           style={{ flex: 1 }}
           onLoadProgress={({ nativeEvent }) => {
-            console.log(nativeEvent.progress * 100);
+            this.setState({ width: nativeEvent.progress * 100 });
           }}
         />
       </>
