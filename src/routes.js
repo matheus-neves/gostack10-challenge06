@@ -1,6 +1,5 @@
 import 'react-native-gesture-handler';
 import React from 'react';
-import { Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -15,30 +14,26 @@ export default function Routes() {
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          // headerTitle: ({ style, children: title }) => {
-          //   return (
-          //     <Text
-          //       style={{ color: '#fff', fontWeight: 'bold', fontSize: 20 }}
-          //       numberOfLines={1}>
-          //       {title}
-          //     </Text>
-          //   );
-          // },
           headerStyle: {
             backgroundColor: '#7159c1',
+            shadowColor: 'transparent',
           },
           headerBackTitleVisible: false,
           headerTitleAlign: 'center',
           headerTintColor: '#fff',
           headerTitleStyle: {
             fontWeight: 'bold',
+            width: 300,
+            textAlign: 'center',
           },
         }}>
         <Stack.Screen name="Usuários" component={Main} />
         <Stack.Screen
           name="User"
           component={User}
-          options={({ route }) => ({ headerTitle: route.params.user.name })}
+          options={({ route }) => ({
+            headerTitle: route.params.user.name,
+          })}
         />
         <Stack.Screen
           name="Repo"
