@@ -27,7 +27,7 @@
   <a href="#memo-licença">Licença</a>
 </p>
 
-## :Demo do Desafio
+## Demo do Desafio
 
 https://www.youtube.com/embed/HV8Nj7bMcW4
 
