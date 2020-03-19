@@ -1,5 +1,6 @@
 import 'react-native-gesture-handler';
 import React from 'react';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -17,13 +18,27 @@ export default function Routes() {
           headerStyle: {
             backgroundColor: '#7159c1',
             shadowColor: 'transparent',
+            elevation: 0,
           },
+          headerBackImage: () => (
+            <Icon
+              name="keyboard-arrow-left"
+              type="MaterialIcons"
+              style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                paddingTop: 5,
+              }}
+              size={35}
+              color="#fff"
+            />
+          ),
           headerBackTitleVisible: false,
           headerTitleAlign: 'center',
           headerTintColor: '#fff',
           headerTitleStyle: {
             fontWeight: 'bold',
-            width: 300,
+            width: 250,
             textAlign: 'center',
           },
         }}>

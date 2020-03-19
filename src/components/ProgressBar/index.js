@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Animated } from 'react-native';
 
 export default class ProgressBar extends Component {
+  static propTypes = {
+    progress: PropTypes.number.isRequired,
+  };
+
   state = {
     animation: new Animated.Value(0),
   };
 
-  componentDidUpdate(prevProps, _) {
+  componentDidUpdate(prevProps) {
     const { animation } = this.state;
     const { progress } = this.props;
 
@@ -19,7 +24,6 @@ export default class ProgressBar extends Component {
   }
 
   render() {
-    const { progress } = this.props;
     const { animation } = this.state;
 
     const widthInterpolated = animation.interpolate({
@@ -32,6 +36,7 @@ export default class ProgressBar extends Component {
       <Animated.View
         style={{
           height: 4,
+          border: 0,
           width: widthInterpolated,
           backgroundColor: '#7159c1',
         }}></Animated.View>

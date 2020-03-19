@@ -31,7 +31,6 @@ export default class User extends Component {
     stars: [],
     page: 1,
     loading: false,
-    loadingMore: false,
     refreshing: false,
   };
 
@@ -51,7 +50,6 @@ export default class User extends Component {
     const { route } = this.props;
     const { user } = route.params;
 
-    this.setState({ loadingMore: true });
     const response = await api.get(`/users/${user.login}/starred`, {
       params: {
         page: page + 1,
@@ -61,7 +59,6 @@ export default class User extends Component {
     this.setState({
       stars: [...stars, ...response.data],
       page: page + 1,
-      loadingMore: false,
     });
   };
 
@@ -90,7 +87,7 @@ export default class User extends Component {
   };
 
   render() {
-    const { stars, loading, loadingMore, refreshing } = this.state;
+    const { stars, loading, refreshing } = this.state;
     const { route } = this.props;
     const { user } = route.params;
 
@@ -104,18 +101,25 @@ export default class User extends Component {
 
         {loading ? (
           <Loading>
-            <ActivityIndicator size={60} color="#7159c1" />
+            <ActivityIndicator size="large" color="#7159c1" />
           </Loading>
         ) : (
           <>
             <Stars
               data={stars}
               keyExtractor={star => String(star.id)}
-              onEndReachedThreshold={0.4}
+              onEndReachedThreshold={0.2}
               onEndReached={this.loadMore}
               onRefresh={this.refreshList} // Função dispara quando o usuário arrasta a lista pra baixo
               refreshing={refreshing} // Variável que armazena um estado true/false que representa se a lista está atualizando
               // Restante das props
+              ListFooterComponent={
+                <Starred>
+                  <Loading>
+                    <ActivityIndicator size="large" color="#7159c1" />
+                  </Loading>
+                </Starred>
+              }
               renderItem={({ item }) => (
                 <TouchableOpacity onPress={() => this.handleNavigate(item)}>
                   <Starred>
@@ -128,11 +132,6 @@ export default class User extends Component {
                 </TouchableOpacity>
               )}
             />
-            {loadingMore && (
-              <Loading loadingMore>
-                <ActivityIndicator size={30} color="#7159c1" />
-              </Loading>
-            )}
           </>
         )}
       </Container>

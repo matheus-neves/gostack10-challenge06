@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { RectButton } from 'react-native-gesture-handler';
+import { RectButton, BorderlessButton } from 'react-native-gesture-handler';
 
 export const Container = styled.View`
   flex: 1;
@@ -18,7 +18,7 @@ export const Input = styled.TextInput.attrs({
 })`
   flex: 1;
   height: 40px;
-  background: #eee;
+  background: #fefefe;
   border-radius: 4px;
   padding: 0 15px;
   border: 1px solid #ddd;
@@ -50,8 +50,12 @@ export const List = styled.FlatList.attrs({
 `;
 
 export const User = styled.View`
+  position: relative;
   align-items: center;
-  margin: 0 20px 30px;
+  background: #fefefe;
+  border-radius: 4px;
+  padding: 20px;
+  margin-top: 15px;
 `;
 
 export const Avatar = styled.Image`
@@ -79,14 +83,22 @@ export const Bio = styled.Text.attrs({
   text-align: center;
 `;
 
+export const RemoveButton = styled(BorderlessButton)`
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border-radius: 15px;
+  width: 30px;
+  height: 30px;
+`;
+
 export const ProfileButton = styled(RectButton)`
-  margin-top: 10px;
-  align-self: stretch;
+  margin-top: 20px;
   border-radius: 4px;
   background: #7159c1;
   justify-content: center;
   align-items: center;
-  height: 36px;
+  padding: 10px 15px;
 `;
 export const ProfileButtonText = styled.Text`
   font-size: 14px;

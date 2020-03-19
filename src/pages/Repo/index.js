@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { WebView } from 'react-native-webview';
 
 import ProgressBar from '../../components/ProgressBar';
 
 export default class Repo extends Component {
+  static propTypes = {
+    route: PropTypes.shape().isRequired,
+  };
+
   state = {
     progress: 0,
   };

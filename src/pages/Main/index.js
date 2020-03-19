@@ -18,6 +18,7 @@ import {
   Bio,
   ProfileButton,
   ProfileButtonText,
+  RemoveButton,
 } from './styles';
 
 export default class Main extends Component {
@@ -54,6 +55,14 @@ export default class Main extends Component {
       AsyncStorage.setItem('users', JSON.stringify(users));
     }
   }
+
+  removeItem = item => {
+    const { users } = this.state;
+
+    const filteredUsers = users.filter(user => user !== item);
+
+    this.setState({ users: filteredUsers });
+  };
 
   handleAddUser = async () => {
     const { users, newUser } = this.state;
@@ -92,7 +101,7 @@ export default class Main extends Component {
     };
 
     this.setState({
-      users: [...users, data],
+      users: [data, ...users],
       newUser: '',
       loading: false,
       error: {
@@ -143,9 +152,11 @@ export default class Main extends Component {
               <Avatar source={{ uri: item.avatar }} />
               <Name>{item.name}</Name>
               <Bio>{item.bio}</Bio>
-
+              <RemoveButton onPress={() => this.removeItem(item)}>
+                <Icon name="remove-circle" color="#fda50f" size={30} />
+              </RemoveButton>
               <ProfileButton onPress={() => this.handleNavigate(item)}>
-                <ProfileButtonText>Ver perfil</ProfileButtonText>
+                <ProfileButtonText>Detalhes</ProfileButtonText>
               </ProfileButton>
             </User>
           )}
